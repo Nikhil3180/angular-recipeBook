@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import {HeaderComponent} from './header/header.component'
+import {HttpClientModule} from '@angular/common/http';
+import {HeaderComponent} from './header/header.component';
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
@@ -35,9 +35,10 @@ import { ReceipeService } from './recipes/receipe.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [ShoppingListService,ReceipeService],
+  providers: [ShoppingListService, ReceipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
