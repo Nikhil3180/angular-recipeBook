@@ -48,8 +48,13 @@ recipesChanged = new Subject<Recipe[]>();
             this.recipesChanged.next(this.receipes.slice());
       }
 
-      deleteRecipe(index: number){
-          this.receipes.splice(index,1);
+      deleteRecipe(index: number) {
+          this.receipes.splice(index, 1);
+          this.recipesChanged.next(this.receipes.slice());
+      }
+
+      setReceipes(recipes: Recipe[]) {
+          this.receipes = recipes;
           this.recipesChanged.next(this.receipes.slice());
       }
     }

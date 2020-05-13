@@ -12,4 +12,7 @@ export class HeaderComponent {
     saveData() {
             this.dataService.storeRecipes();
     }
+    loadData() {
+        this.dataService.fetchRecipes();
+    }
 }
