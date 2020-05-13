@@ -13,6 +13,6 @@ export class HeaderComponent {
             this.dataService.storeRecipes();
     }
     loadData() {
-        this.dataService.fetchRecipes();
+        this.dataService.fetchRecipes().subscribe();
     }
 }

@@ -11,20 +11,20 @@ recipesChanged = new Subject<Recipe[]>();
 
     }
 
-
-    private receipes: Recipe[] = [
-        new Recipe('A Pizza Receipe', 'Pizza',
-        // tslint:disable-next-line: max-line-length
-        'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/8/6/0/WU2301_Four-Cheese-Pepperoni-Pizzadilla_s4x3.jpg.rend.hgtvcom.826.620.suffix/1565115622965.jpeg',
-        [new Ingredient('Onion', 2),
-    new Ingredient('Bread', 1)])
-        ,
-        new Recipe('Another Pizza Receipe', 'Pizza Description',
-        // tslint:disable-next-line: max-line-length
-        'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/8/6/0/WU2301_Four-Cheese-Pepperoni-Pizzadilla_s4x3.jpg.rend.hgtvcom.826.620.suffix/1565115622965.jpeg',
-        [new Ingredient('Tomato', 2),
-    new Ingredient('Panner', 1)])
-      ];
+private receipes: Recipe[] = [];
+    // private receipes: Recipe[] = [
+    //     new Recipe('A Pizza Receipe', 'Pizza',
+    //     // tslint:disable-next-line: max-line-length
+    //     'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/8/6/0/WU2301_Four-Cheese-Pepperoni-Pizzadilla_s4x3.jpg.rend.hgtvcom.826.620.suffix/1565115622965.jpeg',
+    //     [new Ingredient('Onion', 2),
+    // new Ingredient('Bread', 1)])
+    //     ,
+    //     new Recipe('Another Pizza Receipe', 'Pizza Description',
+    //     // tslint:disable-next-line: max-line-length
+    //     'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/8/6/0/WU2301_Four-Cheese-Pepperoni-Pizzadilla_s4x3.jpg.rend.hgtvcom.826.620.suffix/1565115622965.jpeg',
+    //     [new Ingredient('Tomato', 2),
+    // new Ingredient('Panner', 1)])
+    //   ];
 
       getRecipes() {
           return this.receipes.slice();
