@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './recipe.model';
-import { ReceipeService } from './receipe.service';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-recipes',
@@ -9,15 +6,9 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  constructor(private auth: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.auth.users.subscribe(data => {
-      console.log('receipe component');
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
 
 }
 }
