@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
     kind: string;
@@ -17,7 +18,7 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
     users = new BehaviorSubject<User>(null);
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     signup(email: string, password: string) {
       // tslint:disable-next-line: max-line-length
@@ -43,6 +44,11 @@ export class AuthService {
             this.handleAuthentication(response.email, response.localId, response.idToken, response.expiresIn);
        }));
     }
+
+logout() {
+    this.users.next(null);
+    this.router.navigate(['/auth']);
+}
 
     private handleAuthentication(email: string, userId: string, token: string, expiresIn: string) {
         const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000 );

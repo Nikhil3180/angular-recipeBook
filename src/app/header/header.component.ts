@@ -29,4 +29,8 @@ ngOnDestroy() {
     loadData() {
         this.dataService.fetchRecipes().subscribe();
     }
+
+    onLogout(){
+        this.authService.logout();
+    }
 }
