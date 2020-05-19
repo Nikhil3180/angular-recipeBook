@@ -40,7 +40,7 @@ authObs.subscribe(data => {
   this.router.navigate(['/recipes']);
 }, error  => {
   console.log(error);
-  this.error = 'An error occurred! ' + error.error.error.message;
+  this.error = 'An error occurred! ';
   this.isLoading = false;
 });
   console.log(form);
