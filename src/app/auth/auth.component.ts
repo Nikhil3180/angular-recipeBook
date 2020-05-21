@@ -46,4 +46,7 @@ authObs.subscribe(data => {
   console.log(form);
   form.reset();
 }
+onHandleError(){
+  this.error = null;
+}
 }
