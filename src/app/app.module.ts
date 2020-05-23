@@ -50,6 +50,7 @@ import { PlaceholderDirective } from './shared/placehorder/placeholder.directive
   providers: [ShoppingListService, ReceipeService,
     {
       provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
