@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RecipesRoutingModule } from './recipes-routing.module';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        RouterModule],
+        RecipesRoutingModule,
+        HttpClientModule],
     exports: [
         RecipesComponent,
         RecipesListComponent,
