@@ -39,7 +39,7 @@ import { RecipesModule } from './recipes/recipes.module';
   ],
   providers: [ShoppingListService, ReceipeService,
     {
-      provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi: true}],
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent],
   entryComponents: [AlertComponent]
 })
