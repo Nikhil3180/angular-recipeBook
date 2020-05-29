@@ -15,5 +15,7 @@ export function shoppingListReducer (state = initialState, action: ShoppingListA
                 ...state,   // Copy the old state through spread operator
                 ingredients :  [...state.ingredients, action.payload]
             };
+            default :
+            return state;
         }
 }
