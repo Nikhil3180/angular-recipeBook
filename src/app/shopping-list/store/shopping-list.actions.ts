@@ -3,8 +3,15 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 
 // tslint:disable-next-line: eofline
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
-
+export const ADD_INGREDIENTS = 'ADD_INGREDIENTS';
 export class AddIngredient implements Action {
-    readonly type: string = ADD_INGREDIENT;
-    constructor (public payload: Ingredient){}
+    readonly type = ADD_INGREDIENT;
+    constructor (public payload: Ingredient) {}
 }
+
+export class AddIngredients implements Action {
+    readonly type = ADD_INGREDIENTS;
+    constructor(public payload: Ingredient[]) {}
+}
+
+export type ShoppingListActions = AddIngredient | AddIngredients;
