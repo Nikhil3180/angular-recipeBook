@@ -26,18 +26,12 @@ export class AuthService {
     private tokenExpirationTimer: any;
     constructor(private http: HttpClient, private router: Router, private store: Store<fromApp.AppState>) {}
 
-    signup(email: string, password: string) {
-      // tslint:disable-next-line: max-line-length
-      return  this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
-        {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        }
-        ).pipe(tap( response => {
-             this.handleAuthentication(response.email, response.localId, response.idToken, response.expiresIn);
-        }));
-    }
+    // signup(email: string, password: string) {
+    //   // tslint:disable-next-line: max-line-length
+    //  .pipe(tap( response => {
+    //          this.handleAuthentication(response.email, response.localId, response.idToken, response.expiresIn);
+    //     }));
+    // }
 
     login(email: string, password: string) {
         return this.http.post<AuthResponseData>(
