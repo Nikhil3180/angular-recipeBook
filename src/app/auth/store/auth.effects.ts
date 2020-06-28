@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../user.model';
 
 
 
@@ -26,6 +27,8 @@ const handleAuthentication = (
     token: string
 ) => {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000 );
+    const user = new User(email, userId, token, expirationDate);
+    localStorage.setItem('userData', JSON.stringify(user));
     return new AuthActions.Login({email: email,
          userId: userId, token: token, expirationDate: expirationDate});
 };
@@ -41,7 +44,7 @@ export class AuthEffects {
     @Effect()
     authSignup = this.actions$.pipe(
         ofType(AuthActions.SIGNUP_START),
-        switchMap((signupAction : AuthActions.SignupStart) => {
+        switchMap((signupAction: AuthActions.SignupStart) => {
             return  this.http.post<AuthResponseData>(
                 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
             {
@@ -56,6 +59,33 @@ export class AuthEffects {
             }));
         })
     );
+
+@Effect()
+autoLogin = this.actions$.pipe(
+    ofType(AuthActions.AUTO_LOGIN),
+    map(() => {
+        const userData: {
+            email: string,
+            id: string,
+            _token: string,
+            _tokenExpirationDate: string
+        } = JSON.parse(localStorage.getItem('userData'));
+        if (!userData) {
+            return {type: 'DUMMY'};
+        }
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+        if (loadedUser.token) {
+             // this.store.dispatch(
+                        return  new AuthActions.Login({email: loadedUser.email,
+                                    userId: loadedUser.id, token: loadedUser.id, expirationDate: new Date(userData._tokenExpirationDate)});
+                        // this.users.next(loadedUser);
+                        //  const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+                        //  this.autoLogout(expirationDuration);
+        }
+        return {type: 'DUMMY'};
+    })
+);
+
 
     @Effect()
     authLogin = this.actions$.pipe(
@@ -75,6 +105,11 @@ export class AuthEffects {
             }));
          }),
         );
+
+        @Effect({dispatch: false})
+        authLogout = this.actions$.pipe(ofType(AuthActions.LOGOUT), tap (() => {
+        localStorage.removeItem('userData');
+        }));
 
         @Effect({dispatch: false})
         authRedirect = this.actions$.pipe(ofType(AuthActions.LOGIN, AuthActions.LOGOUT), tap( () => {
