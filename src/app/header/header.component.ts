@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import * as fromApp from '../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import * as AuthActions from '../auth/store/auth.actions';
 
 @Component({
     selector: 'app-header',
@@ -35,7 +36,8 @@ ngOnDestroy() {
         this.dataService.fetchRecipes().subscribe();
     }
 
-    onLogout(){
-        this.authService.logout();
+    onLogout() {
+        this.store.dispatch(new AuthActions.Logout());
+        // this.authService.logout();
     }
 }
